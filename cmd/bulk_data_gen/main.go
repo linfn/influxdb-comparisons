@@ -1,6 +1,7 @@
 // bulk_data_gen generates time series data from pre-specified use cases.
 //
 // Supported formats:
+// KetaDB JSON format
 // InfluxDB bulk load format
 // ElasticSearch bulk load format
 // Cassandra query format
@@ -32,7 +33,7 @@ import (
 )
 
 // Output data format choices:
-var formatChoices = []string{"influx-bulk", "es-bulk", "es-bulk6x", "es-bulk7x", "cassandra", "mongo", "opentsdb", "timescaledb-sql", "timescaledb-copyFrom", "graphite-line", "splunk-json"}
+var formatChoices = []string{"ketadb", "influx-bulk", "es-bulk", "es-bulk6x", "es-bulk7x", "cassandra", "mongo", "opentsdb", "timescaledb-sql", "timescaledb-copyFrom", "graphite-line", "splunk-json"}
 
 // Program option vars:
 var (
@@ -238,6 +239,8 @@ func main() {
 		serializer = common.NewSerializerGraphiteLine()
 	case "splunk-json":
 		serializer = common.NewSerializerSplunkJson()
+	case "ketadb":
+		serializer = common.NewSerializerKetaDB()
 	default:
 		panic("unreachable")
 	}
