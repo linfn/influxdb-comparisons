@@ -41,7 +41,7 @@ func (s *SerializerKetaDB) SerializePoint(w io.Writer, p *Point) (err error) {
 		buf = append(buf, "\""...)
 	}
 
-	buf = append(buf, ",\"metrics\":{"...)
+	buf = append(buf, ",\"fields\":{"...)
 	for i := 0; i < len(p.FieldKeys); i++ {
 		if i > 0 {
 			buf = append(buf, ","...)
